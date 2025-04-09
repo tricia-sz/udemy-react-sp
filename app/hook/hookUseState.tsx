@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 export default function HookUseState() {
     const [tarefas, setTarefas] = useState([
@@ -27,6 +27,8 @@ export default function HookUseState() {
         setInput("");
     }
 
+    const totalTarefas = useMemo(() => tarefas.length, [tarefas]);
+
     return (
         <div>
             <ul>
@@ -34,6 +36,7 @@ export default function HookUseState() {
                     <li key={tarefa}>{tarefa}</li>
                 )))}
             </ul>
+            <h2 className="text-yellow-600">Você tem {totalTarefas} tarefas</h2>
            <div className="flex gap-4 my-4">
             <input
                 type="text"

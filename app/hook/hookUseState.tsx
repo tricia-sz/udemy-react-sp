@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function HookUseState() {
     const [tarefas, setTarefas] = useState([
@@ -7,6 +7,20 @@ export default function HookUseState() {
     ])
 
     const [input, setInput] = useState("")
+
+    useEffect(() => {
+        const terefasStorage = localStorage.getItem('tarefas')
+
+        if(terefasStorage) {
+            setTarefas(JSON.parse(terefasStorage));
+        }
+
+    },[]);
+
+    useEffect(() => {
+        localStorage.setItem('tarefas', JSON.stringify(tarefas));
+        
+    },[tarefas]);
 
     function novaTarefa() {
         setTarefas([...tarefas, input])
@@ -25,7 +39,7 @@ export default function HookUseState() {
                 type="text"
                 className="bg-gray-600 py-2 border-2 border-sky-500"
                 value={input}
-                onChange={ e => setInput(e.target.value)}
+                onChange={ (e) => setInput(e.target.value)}
                 >
 
                 </input>

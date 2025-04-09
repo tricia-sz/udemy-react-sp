@@ -1,10 +1,5 @@
-import React from "react"
+import type { EquipeProps } from "../types/equipe"
 
-export interface EquipeProps {
-    nome: string
-    idade: number
-    funcao: string
-}
 
 
 export default function Equipe(props: EquipeProps) {

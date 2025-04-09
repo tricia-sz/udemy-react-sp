@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 
 export default function HookUseState() {
     const [tarefas, setTarefas] = useState([
@@ -22,10 +22,10 @@ export default function HookUseState() {
         
     },[tarefas]);
 
-    function novaTarefa() {
+    const novaTarefa = useCallback(()  => {
         setTarefas([...tarefas, input])
         setInput("");
-    }
+    }, [input, setInput]);
 
     const totalTarefas = useMemo(() => tarefas.length, [tarefas]);
 
